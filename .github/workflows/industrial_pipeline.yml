@@ -1,0 +1,39 @@
+name: Industrial AI Platform CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r edge/requirements.txt
+
+      - name: Run Unit Tests
+        run: python -m pytest tests/
+
+      - name: Docker Build (Edge Gateway)
+        run: docker build -t industrial/edge-gateway:${{ github.sha }} ./edge
+
+      - name: Security Scan (Trivy)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'industrial/edge-gateway:${{ github.sha }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          severity: 'CRITICAL,HIGH'
+
+      - name: Push to Registry (Simulated)
+        run: echo "Pushing to Enterprise Docker Registry..."

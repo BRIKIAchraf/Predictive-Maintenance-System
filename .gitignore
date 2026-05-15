@@ -1,0 +1,28 @@
+# Data & Persistence
+data/
+backups/
+*.db
+*.sql
+*.tar.gz
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Spark & Kafka
+spark-warehouse/
+checkpoint/
+/tmp/
+
+# IDEs
+.vscode/
+.idea/
+
+# Logs
+*.log
+loki/
+prometheus/
+tempo/

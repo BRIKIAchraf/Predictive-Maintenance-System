@@ -1,0 +1,14 @@
+{
+  "type": "record",
+  "name": "SensorTelemetry",
+  "namespace": "com.industrial.ai",
+  "fields": [
+    {"name": "timestamp", "type": "long", "doc": "Unix timestamp in milliseconds"},
+    {"name": "machine_id", "type": "string", "doc": "Unique identifier for the machine"},
+    {"name": "factory_id", "type": "string", "doc": "Identifier for the factory/tenant"},
+    {"name": "vibration", "type": "float", "doc": "Vibration intensity (RMS)"},
+    {"name": "temperature", "type": "float", "doc": "Temperature in Celsius"},
+    {"name": "power_consumption", "type": "float", "doc": "Power consumption in Watts"},
+    {"name": "status", "type": "string", "doc": "Operating status (NORMAL, WARNING, CRITICAL)"}
+  ]
+}
