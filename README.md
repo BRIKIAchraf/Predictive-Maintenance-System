@@ -80,3 +80,12 @@ Multi-phase industrial AI reference implementation. Some components are architec
 ## Author
 
 **Achraf BRIKI** · [LinkedIn](https://www.linkedin.com/in/achrafbriki/) · [Portfolio](https://achrafbriki.com)
+
+## Delivery profile
+
+**Status:** Prototype  
+**Demo:** Local multi-service reference architecture with simulated telemetry.  
+**Prerequisites:** Docker, Python and optional Spark, Feast, MLflow and Flower dependencies.  
+**Validation:** Feature freshness, reproducibility, drift alerts, edge disconnection and inference fallback.  
+**Performance plan:** Measure throughput, feature latency, inference p95, drift overhead and alert precision/recall.  
+**Roadmap:** Labelled fixtures, CI, model promotion/rollback, security tests and model-card benchmarks.
