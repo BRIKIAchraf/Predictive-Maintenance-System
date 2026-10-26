@@ -1,0 +1,12 @@
+{
+  "event_id": "machine-demo-0001",
+  "machine_id": "machine-003",
+  "event_time": "2026-01-15T10:30:00Z",
+  "features": {
+    "temperature_c": 67.4,
+    "vibration_rms": 0.21,
+    "rpm": 1450
+  },
+  "label": "nominal",
+  "source": "synthetic-fixture"
+}
