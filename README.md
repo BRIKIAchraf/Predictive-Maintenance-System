@@ -1,61 +1,77 @@
-# 🚀 Smart Industrial AI Platform
+# Predictive Maintenance System
 
-Welcome to your Enterprise-Grade Industrial AI Platform. This project implements a cutting-edge "Staff Engineer" level architecture for Industry 5.0.
+Reference architecture for an industrial AI platform combining edge telemetry, streaming features, MLOps and anomaly inference.
 
-## 🏗️ Enterprise Architecture Stack
-- **Messaging:** Kafka (Backbone) + Mosquitto (MQTT Edge)
-- **Data Governance:** Confluent Schema Registry (Avro/Protobuf)
-- **Observability:** Loki (Logs), Tempo (Traces), Prometheus (Metrics), OpenTelemetry
-- **MLOps Excellence:** **Feast** (Feature Store), **MLflow** (Registry), **Evidently AI** (Drift Detection)
-- **Enterprise Tier:** **Keycloak** (IAM), **HashiCorp Vault** (Secrets), **PostgreSQL** (Metadata)
-- **Real-time Engine:** Spark Streaming + **CEP Rule Engine**
-- **Data Lake:** MinIO (S3 Compatible) + Parquet Historization
-- **Edge AI:** TinyML + Resilient Gateway (SQLite Offline Buffering)
-- **Distributed AI:** Federated Learning (Flower)
+## Objective
 
-## 📂 Project Structure
-```bash
-├── infrastructure/    # Docker Compose (Kafka, Loki, Keycloak, etc.)
-├── schemas/           # Avro Data Governance
-├── edge/              # Resilient Gateway, TinyML Node, Simulator
-├── services/          # Spark, ML Inference, Digital Twin, CEP, Drift
-├── feature_store/     # Feast definitions
-├── federated/         # Federated Learning
-└── data/              # Local persistence (Postgres, Redis, Buffer)
-```
+Detect abnormal machine behaviour early while preserving a clear path from edge events to features, models, alerts and operator-facing state.
 
-## 🛠️ How to Run
+## End-to-end flow
 
-### 1. Infrastructure (Prerequisite: Docker)
-```bash
+~~~text
+Machine simulator → MQTT edge gateway → Kafka + Avro
+                                      ↓
+                               Spark Streaming
+                                      ↓
+                    features → Feast / MLflow / MinIO
+                                      ↓
+                 inference + drift checks → alerts / digital twin
+~~~
+
+## Platform components
+
+| Concern | Components |
+|---|---|
+| Event transport | MQTT, Mosquitto, Kafka |
+| Contracts | Avro/Protobuf, Schema Registry |
+| Streaming | Spark Streaming, CEP rules |
+| Feature lifecycle | Feast, feature engineering services |
+| Experiment tracking | MLflow |
+| Drift monitoring | Evidently AI |
+| Storage | MinIO/S3-compatible Parquet, PostgreSQL, Redis |
+| Edge AI | SQLite offline buffer, TinyML concept |
+| Distributed learning | Flower federated-learning concept |
+| Platform operations | Prometheus, Loki, Tempo, OpenTelemetry |
+| Security | Keycloak and Vault concepts |
+
+## Repository structure
+
+~~~text
+infrastructure/    Docker Compose and platform services
+schemas/           Event contracts and governance
+edge/              Resilient gateway, simulator and TinyML node
+services/          Streaming, inference, digital twin and CEP
+feature_store/     Feast definitions
+federated/         Flower server and client
+data/              Local persistence and sample data
+~~~
+
+## Quick start
+
+~~~bash
 cd infrastructure
-docker-compose up -d
-```
-
-### 2. Install Dependencies
-```bash
+docker compose up -d
 pip install -r edge/requirements.txt
-# Add: flwr, pyspark if needed
-```
+python edge/simulator.py
+python edge/gateway.py
+~~~
 
-### 3. Start the Data Flow (Phase 1)
-- **Run Simulator:** `python edge/simulator.py` (Generates raw JSON MQTT)
-- **Run Gateway:** `python edge/gateway.py` (Bridges to Kafka with Avro)
+Additional phases include feature engineering, inference, digital-twin state and federated-learning experiments.
 
-### 4. Start Real-time Processing (Phase 3)
-- **Run Feature Engineering:** `python services/feature_engineering.py` (Spark)
+## MLOps lifecycle
 
-### 5. Start Intelligent Services (Phase 4 & 5)
-- **Run ML Inference:** `python services/ml_inference.py` (Detects anomalies)
-- **Run Digital Twin:** `python services/digital_twin.py` (Virtual state)
+1. Capture and validate machine events.
+2. Build time-windowed features.
+3. Track experiments and parameters with MLflow.
+4. Register or serve features through Feast.
+5. Monitor drift and quality with Evidently AI.
+6. Persist state and expose alerts to operators.
+7. Measure false positives, missed faults and recovery behaviour.
 
-### 6. Advanced AI (Phase 6 & 7)
-- **Run TinyML Node:** `python edge/smart_node.py` (Local inference)
-- **Run FL Server:** `python federated/server.py`
-- **Run FL Client:** `python federated/client.py`
+## Status
 
-## 📊 Verification
-- **Kafka UI:** [http://localhost:9000](http://localhost:9000)
-- **MinIO UI:** [http://localhost:9006](http://localhost:9006)
-- **Digital Twin API:** [http://localhost:8001/dashboard](http://localhost:8001/dashboard)
-- **ML Health:** [http://localhost:8000/health](http://localhost:8000/health)
+Multi-phase industrial AI reference implementation. Some components are architectural or experimental and require integration tests, labelled fault data, security review and load testing before production deployment.
+
+## Author
+
+**Achraf BRIKI** · [LinkedIn](https://www.linkedin.com/in/achrafbriki/) · [Portfolio](https://achrafbriki.com)
