@@ -1,3 +1,8 @@
+
+
+## About
+
+Industrial AI and MLOps reference platform covering edge telemetry, streaming features, feature stores, experiment tracking, drift monitoring and anomaly inference.
 # Predictive Maintenance System
 
 Reference architecture for an industrial AI platform combining edge telemetry, streaming features, MLOps and anomaly inference.
